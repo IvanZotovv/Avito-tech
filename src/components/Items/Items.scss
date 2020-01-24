@@ -1,0 +1,34 @@
+.item{
+  display: flex;
+  flex-direction: column;
+  margin: 5px 15px;
+  width: 22%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  &:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.9); 
+  }
+}
+
+.item-title{
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-image{
+  display: flex;
+  flex-direction: column;
+}
+
+.item-adress{
+  display: flex;
+  padding: 0 0 11px;
+  margin: 0;
+  height: 60px;
+}
