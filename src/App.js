@@ -5,66 +5,62 @@ import { useLocation } from "react-router-dom";
 import LinkToItem from './components/LinkTo/LinkToItem';
 import ReactDOM from 'react-dom';
 
-
-
 const URL = "http://134.209.138.34/items"
+const URL_ITEM = "http://134.209.138.34/item"
 
-const URL_ITEM = "http://134.209.138.34/item/"
 
-const getItem = ({url, id}) => {
-  console.log(`${url}${id}`)
-  return new Promise((resolve, reject) => {
-      fetch(`${url}${id}`)
-          .then(response => response.json())
-          // .then(data => resolve(getFirstTenTickets(data)))
-          .then(data => resolve(data))
-          .catch(err => {
-              reject(err);
-          });
-  })
-}
+const fetchData = (val) => (
+  new Promise(async(resolve, reject) => {
+  console.log(val)
+   try {
+     const res = await fetch(val);
+     resolve(res.json());
+   } catch(err) {
+     reject(err);
+   }
+ })    
+)
+
 
 const App = () => {
-  const [placeForSale, setPlaceForSale] = useState(null);
+  const [placeForSale, setPlaceForSale] = useState([]);
+  const [itemById, setItemById] = useState([]);
+  const [isLocation, setLocation] = useState(); //flag
   const [contentLoading, changeCondition] = useState(false);
-  const [getId, setId] = useState(null)
 
   const location = useLocation()
 
-  async function fetchData(){
-    const res = await  fetch(URL)
-    res
-      .json()
-      .then(res => setPlaceForSale(res))
-      .catch(err => console.log(err))      
-  }
+  console.log(location)
 
   useEffect(() =>{
-    fetchData()
-    change()
-  }, []);
-
-  const change = () => changeCondition(true)
-
-  const propsForItemSearch = {
-    url: URL_ITEM,
-    id: location.pathname.replace(/[/]/g, '')
-  }
-
-  const item = []
-
-  if(location.pathname.length !== 1){
-    getItem(propsForItemSearch).then(data => {
-      // setId(data)
-      // item.push(data)
-      console.log(data)
+    fetchData(URL).then((res) => {
+      setPlaceForSale(res);
+      changeCondition(true);
     })
-      .catch(err => console.log(err))       
-  }
+    .catch((err) => {
+      throw new Error(err)
+    })
+  }, [placeForSale.length]);
 
+  const id = location.pathname.replace(/[/]/g, '')
 
+  useEffect(() => {
+    setLocation(location.pathname)
+  }, [isLocation])
 
-  console.log(item)
+  // useEffect(() => {
+  //   if(id){
+  //     fetchData(`${URL_ITEM}${id}`).then((res) => {
+  //       setItemById(res);
+  //     })
+  //     .catch((err) => {
+  //       throw new Error(err)
+  //     })      
+  //   }
+
+  // }, [itemById.length])
+
+  console.log(isLocation)
 
   return (
       <div>
