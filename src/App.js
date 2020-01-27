@@ -24,13 +24,12 @@ const fetchData = (val) => (
 
 const App = () => {
   const [placeForSale, setPlaceForSale] = useState([]);
-  const [itemById, setItemById] = useState([]);
+  const [selectItem, setSelectItem] = useState('');
   const [isLocation, setLocation] = useState(); //flag
   const [contentLoading, changeCondition] = useState(false);
 
   const location = useLocation()
 
-  console.log(location)
 
   useEffect(() =>{
     fetchData(URL).then((res) => {
@@ -42,25 +41,19 @@ const App = () => {
     })
   }, [placeForSale.length]);
 
-  const id = location.pathname.replace(/[/]/g, '')
 
   useEffect(() => {
-    setLocation(location.pathname)
-  }, [isLocation])
+    if(location.pathname){
+      fetchData(`${URL_ITEM}${location.pathname}`).then((res) => {
+        setSelectItem(res);
+      })
+      .catch((err) => {
+        throw new Error(err)
+      })      
+    } 
+  }, [selectItem.length])
 
-  // useEffect(() => {
-  //   if(id){
-  //     fetchData(`${URL_ITEM}${id}`).then((res) => {
-  //       setItemById(res);
-  //     })
-  //     .catch((err) => {
-  //       throw new Error(err)
-  //     })      
-  //   }
-
-  // }, [itemById.length])
-
-  console.log(isLocation)
+  console.log(selectItem)
 
   return (
       <div>
@@ -69,13 +62,13 @@ const App = () => {
             <h1 className='main-title'>Продажа, аренда квартир</h1>
             {
               contentLoading && placeForSale ? 
-              <ListOfItems list={placeForSale} /> : 
+              <ListOfItems selectItem={selectItem} list={placeForSale} /> : 
               <div>Loading...</div>
               }
           </div> :  
             ReactDOM.createPortal(
               <main>
-                <LinkToItem>
+                <LinkToItem unSelectedItem={setSelectItem}>
                   <h1>Modal</h1>
                 </LinkToItem>
               </main>,

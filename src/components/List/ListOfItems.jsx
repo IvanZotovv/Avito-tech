@@ -1,14 +1,13 @@
 import React from 'react'
 import Items from '../Items/Items'
 import './List.scss'
-// import LinkToItem from '../LinkTo/LinkToItem'
 
 
-const ListOfItems = ({list}) => {
+const ListOfItems = ({list, selectItem}) => {
   return (
     <ul className='list'>
       {list.map(i => 
-        <Items item={i} key={i.id} />
+        <Items selectItem={selectItem} item={i} key={i.id} />
       )}
     </ul>       
   )

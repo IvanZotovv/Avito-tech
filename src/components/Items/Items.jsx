@@ -4,12 +4,13 @@ import { useHistory } from "react-router-dom";
 
 
 
-const Items = ({item}) => {
+const Items = ({item, selectItem}) => {
 
   const history = useHistory();
 
   const handleClick = () => {
     history.push(`${item.id}`)
+    selectItem(item.id)
   }
 
 

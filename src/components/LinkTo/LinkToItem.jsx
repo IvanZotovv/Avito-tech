@@ -2,12 +2,13 @@ import React from 'react'
 import { useHistory } from "react-router-dom";
 
 
-const LinkToItem = () => {
+const LinkToItem = ({unSelectedItem}) => {
 
   const history = useHistory();
 
   const handelClose = () => {
     history.push('')
+    unSelectedItem('')
   }
 
   return (
