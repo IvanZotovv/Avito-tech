@@ -11,7 +11,6 @@ const URL_ITEM = "http://134.209.138.34/item"
 
 const fetchData = (val) => (
   new Promise(async(resolve, reject) => {
-  console.log(val)
    try {
      const res = await fetch(val);
      resolve(res.json());
@@ -25,7 +24,6 @@ const fetchData = (val) => (
 const App = () => {
   const [placeForSale, setPlaceForSale] = useState([]);
   const [selectItem, setSelectItem] = useState('');
-  const [isLocation, setLocation] = useState(); //flag
   const [contentLoading, changeCondition] = useState(false);
 
   const location = useLocation()
@@ -43,7 +41,7 @@ const App = () => {
 
 
   useEffect(() => {
-    if(location.pathname){
+    if(selectItem){
       fetchData(`${URL_ITEM}${location.pathname}`).then((res) => {
         setSelectItem(res);
       })
@@ -51,9 +49,8 @@ const App = () => {
         throw new Error(err)
       })      
     } 
-  }, [selectItem.length])
 
-  console.log(selectItem)
+  }, [selectItem.length])
 
   return (
       <div>
@@ -62,13 +59,13 @@ const App = () => {
             <h1 className='main-title'>Продажа, аренда квартир</h1>
             {
               contentLoading && placeForSale ? 
-              <ListOfItems selectItem={selectItem} list={placeForSale} /> : 
+              <ListOfItems selectItem={setSelectItem} list={placeForSale} /> : 
               <div>Loading...</div>
               }
           </div> :  
             ReactDOM.createPortal(
               <main>
-                <LinkToItem unSelectedItem={setSelectItem}>
+                <LinkToItem selectItem={selectItem} unSelectedItem={setSelectItem}>
                   <h1>Modal</h1>
                 </LinkToItem>
               </main>,
