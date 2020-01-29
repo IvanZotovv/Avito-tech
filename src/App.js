@@ -65,7 +65,7 @@ const App = () => {
               }
           </div> :  
             ReactDOM.createPortal(
-              <main>
+              <main className='main-section'>
                 <LinkToItem selectItem={object} unSelectedItem={setSelectItem}>
                   <h1>Modal</h1>
                 </LinkToItem>

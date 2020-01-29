@@ -1,12 +1,10 @@
-import React,{ useState, useEffect } from 'react'
+import React from 'react'
 import { useHistory } from "react-router-dom";
 import './LinkToItem.scss'
+import Slider from '../Slider/Slider';
 
 
 const LinkToItem = ({unSelectedItem, selectItem}) => {
-
-  const [contentLoading, changeCondition] = useState(false);
-  useEffect(() =>changeCondition(true));
  
   const history = useHistory();
   const handelClose = () => {
@@ -14,23 +12,7 @@ const LinkToItem = ({unSelectedItem, selectItem}) => {
     unSelectedItem('')
   }
 
-
-  const [index, setCurrentIndex] = useState({
-    currentIndex: 0,
-    length: 0
-  })
-
-  console.log(selectItem.map(i => i.images.length).join(''))
-
-  useEffect(() => {
-    setCurrentIndex({
-      currentIndex: 0,
-      length: selectItem.map(i => i.images.length).join('')
-    })
-  }, [index.length])
-
-
-  console.log(index)
+  console.log(selectItem)
   return (
     <div className='item-spread'>
       {
@@ -38,16 +20,13 @@ const LinkToItem = ({unSelectedItem, selectItem}) => {
           return <div className="item-block">
             {/* <a className="left" onClick={prev}>prev</a>
             <a className="rigth" onClick={next}>next</a> */}
-            <div className="item-block-image-container">
-              {
-                i.images.map(el => <div className="item-block-image-item">
-                  <img className="item-block-image" src={el} alt=""/>
-                </div>)
-              }
-            </div>
+              <Slider arrayOfImage={i.images} />
             <div className="item-block-info">
-              <h3>{i.address}</h3>
-              <button onClick={handelClose}>Назад</button>
+              <h3 className="item-block-title">{i.title}</h3>
+              <p className="item-block-adress">{i.address}</p>
+              <div className="item-block-desc">{i.description}</div>
+              <strong className="item-block-price">{i.price}</strong>
+              <button className="item-block-button" onClick={handelClose}>Назад</button>
             </div>
          </div>
         })

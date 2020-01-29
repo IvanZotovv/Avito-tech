@@ -7,3 +7,7 @@
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
 }
+.main-section{
+  background: rgb(78, 78, 78);
+  height: 100vh;
+}
