@@ -6,11 +6,7 @@ import './LinkToItem.scss'
 const LinkToItem = ({unSelectedItem, selectItem}) => {
 
   const [contentLoading, changeCondition] = useState(false);
-
-  useEffect(() =>{
-      changeCondition(true);
-  });
-
+  useEffect(() =>changeCondition(true));
  
   const history = useHistory();
   const handelClose = () => {
@@ -19,34 +15,32 @@ const LinkToItem = ({unSelectedItem, selectItem}) => {
   }
 
 
-  const [stateImage, setStateImage] = useState({
+  const [index, setCurrentIndex] = useState({
     currentIndex: 0,
     length: 0
   })
 
-  // useEffect(() => {
+  console.log(selectItem.map(i => i.images.length).join(''))
 
-  // }, [stateImage.length])
+  useEffect(() => {
+    setCurrentIndex({
+      currentIndex: 0,
+      length: selectItem.map(i => i.images.length).join('')
+    })
+  }, [index.length])
 
 
-  console.log(stateImage)
-
-  const getResult = typeof selectItem !== 'object' ? <div>Loading...</div> :
-   <div className='item-spread'>
+  console.log(index)
+  return (
+    <div className='item-spread'>
       {
         selectItem.map(i => {
-          setStateImage({
-            currentIndex: 0,
-            length: i.images.length
-          })
           return <div className="item-block">
+            {/* <a className="left" onClick={prev}>prev</a>
+            <a className="rigth" onClick={next}>next</a> */}
             <div className="item-block-image-container">
-              {/* <div className="background"> */}
-                {/* <div className="left" onClick={prev}>left</div>
-                <div className="right" onClick={next}>right</div> */}
-              {/* </div> */}
               {
-                i.images.map((el, index) => <div className="item-block-image-item">
+                i.images.map(el => <div className="item-block-image-item">
                   <img className="item-block-image" src={el} alt=""/>
                 </div>)
               }
@@ -58,12 +52,6 @@ const LinkToItem = ({unSelectedItem, selectItem}) => {
          </div>
         })
       }
-    </div>
-
-
-  return (
-    <div >
-      {getResult}
     </div>
   )
 }

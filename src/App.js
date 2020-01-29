@@ -24,6 +24,7 @@ const fetchData = (val) => (
 const App = () => {
   const [placeForSale, setPlaceForSale] = useState([]);
   const [selectItem, setSelectItem] = useState('');
+  const [object, setObject] = useState([]);
   const [contentLoading, changeCondition] = useState(false);
 
   const location = useLocation()
@@ -43,14 +44,14 @@ const App = () => {
   useEffect(() => {
     if(selectItem){
       fetchData(`${URL_ITEM}${location.pathname}`).then((res) => {
-        setSelectItem(res);
+        setObject(res);
       })
       .catch((err) => {
         throw new Error(err)
       })      
     } 
-
   }, [selectItem.length])
+
 
   return (
       <div>
@@ -65,14 +66,12 @@ const App = () => {
           </div> :  
             ReactDOM.createPortal(
               <main>
-                <LinkToItem selectItem={selectItem} unSelectedItem={setSelectItem}>
+                <LinkToItem selectItem={object} unSelectedItem={setSelectItem}>
                   <h1>Modal</h1>
                 </LinkToItem>
               </main>,
               document.getElementById('portal')
             )            
-          
-
         }         
       </div>      
   );
