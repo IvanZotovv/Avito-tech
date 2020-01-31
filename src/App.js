@@ -11,13 +11,13 @@ const URL_ITEM = "http://134.209.138.34/item"
 
 const fetchData = (val) => (
   new Promise(async(resolve, reject) => {
-   try {
-     const res = await fetch(val);
-     resolve(res.json());
-   } catch(err) {
-     reject(err);
-   }
- })    
+    try {
+      const res = await fetch(val);
+      resolve(res.json());
+    } catch(err) {
+      reject(err);
+    }
+  })    
 )
 
 

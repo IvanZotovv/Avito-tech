@@ -31,3 +31,27 @@
   height: 150px;
   width: 150px;
 }
+
+.left {
+  position: absolute;
+  color: red;
+  z-index: 234;
+  top: 38%;
+  right: 93%;
+  cursor: pointer;
+  &:hover{
+    color: green;
+  }
+}
+
+.right {
+  position: absolute;
+  color: red;
+  z-index: 234;
+  right: 35%;
+  top: 38%;
+  cursor: pointer;
+  &:hover{
+    color: green;
+  }
+}

@@ -12,15 +12,13 @@ const LinkToItem = ({unSelectedItem, selectItem}) => {
     unSelectedItem('')
   }
 
-  console.log(selectItem)
   return (
     <div className='item-spread'>
       {
         selectItem.map(i => {
           return <div className="item-block">
-            {/* <a className="left" onClick={prev}>prev</a>
-            <a className="rigth" onClick={next}>next</a> */}
-              <Slider arrayOfImage={i.images} />
+
+            <Slider arrayOfImage={i.images}/>
             <div className="item-block-info">
               <h3 className="item-block-title">{i.title}</h3>
               <p className="item-block-adress">{i.address}</p>

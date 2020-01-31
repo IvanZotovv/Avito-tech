@@ -26,33 +26,23 @@
 
 .item-block-info{
   width: 30%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   padding: 0 10px;
 }
 
 
-.left{
-  position: absolute;
-  color: red;
-  z-index: 234;
-  top: 38%;
-  right: 93%;
-}
 
-.right{
-  position: absolute;
-  color: red;
-  z-index: 234;
-  right: 35%;
-  top: 38%;
-}
 
-.item-block-title{
+.item-block-title, .item-block-price{
   text-align: center;
 }
 
 .item-block-button{
   width: 50%;
-  margin: 20px auto;
+  margin: 40px auto 0;
+}
+.item-block-desc{
+  height: 71%;
 }
