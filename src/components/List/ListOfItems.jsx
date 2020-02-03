@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Items from '../Items/Items'
-import './List.scss'
+import './List.scss';
+import {Context} from '../../context'
 
-
-const ListOfItems = ({list, selectItem}) => {
+const ListOfItems = ({ selectItem}) => {
+  const list = useContext(Context)
+  const {placeForSale} = list
   return (
     <ul className='list'>
-      {list.map(i => 
+      {placeForSale.map(i => 
         <Items selectItem={selectItem} item={i} key={i.id} />
       )}
     </ul>       

@@ -38,7 +38,7 @@
   z-index: 234;
   top: 38%;
   right: 93%;
-  font-size: 30px;
+  font-size: 35px;
   cursor: pointer;
   &:hover{
     color: green;
@@ -51,9 +51,26 @@
   z-index: 234;
   right: 35%;
   top: 38%;
-  font-size: 30px;
+  font-size: 35px;
   cursor: pointer;
   &:hover{
     color: green;
   }
+}
+
+.left-disable {
+  position: absolute;
+  color: rgba(82, 82, 80, 0.151);
+  z-index: 234;
+  top: 38%;
+  right: 93%;
+  font-size: 35px;
+}
+.right-disable {
+  position: absolute;
+  color: rgba(82, 82, 80, 0.151);
+  z-index: 234;
+  right: 35%;
+  top: 38%;
+  font-size: 35px;
 }

@@ -4,6 +4,8 @@ import ListOfItems from './components/List/ListOfItems';
 import { useLocation } from "react-router-dom";
 import LinkToItem from './components/LinkTo/LinkToItem';
 import ReactDOM from 'react-dom';
+import { useHistory } from "react-router-dom";
+import {Context} from './context';
 
 const URL = "http://134.209.138.34/items"
 const URL_ITEM = "http://134.209.138.34/item"
@@ -26,7 +28,8 @@ const App = () => {
   const [selectItem, setSelectItem] = useState('');
   const [object, setObject] = useState([]);
   const [contentLoading, changeCondition] = useState(false);
-
+  const history = useHistory();
+  
   const location = useLocation()
 
 
@@ -52,28 +55,39 @@ const App = () => {
     } 
   }, [selectItem.length])
 
+  const handleClick = (id) => {
+    history.push(`${id}`)
+    setSelectItem(id)
+  }
+
+  const handelClose = () => {
+    history.push('')
+    setSelectItem('')
+  }
 
   return (
+    <Context.Provider value={{placeForSale, object, handleClick, handelClose}}>
       <div>
         {
           location.pathname.length === 1 ? <div>
             <h1 className='main-title'>Продажа, аренда квартир</h1>
             {
               contentLoading && placeForSale ? 
-              <ListOfItems selectItem={setSelectItem} list={placeForSale} /> : 
+              <ListOfItems selectItem={setSelectItem} list={placeForSale}/> : 
               <div>Loading...</div>
               }
           </div> :  
             ReactDOM.createPortal(
               <main className='main-section'>
-                <LinkToItem selectItem={object} unSelectedItem={setSelectItem}>
+                <LinkToItem unSelectedItem={setSelectItem}>
                   <h1>Modal</h1>
                 </LinkToItem>
               </main>,
               document.getElementById('portal')
             )            
         }         
-      </div>      
+      </div>        
+    </Context.Provider>
   );
 }
 
