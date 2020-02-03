@@ -22,8 +22,8 @@ export default function Slider({arrayOfImage}) {
   return (
     <div className="slider">
       <div className="slider-block">
-        <a className="left" onClick={prev}>prev</a>
-        <a className="right"  onClick={next}>next</a>
+        <a className="left" onClick={prev}>&lt;</a>
+        <a className="right"  onClick={next}>&gt;</a>
         <img className="slider-block-image" src={image === null ? arrayOfImage[0] : image} alt="item"/>
       </div>
       <ul className="slider-list">
