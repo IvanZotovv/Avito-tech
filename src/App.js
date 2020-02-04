@@ -6,7 +6,6 @@ import ListOfItems from './components/List/ListOfItems';
 import LinkToItem from './components/LinkTo/LinkToItem';
 import {Context} from './context';
 import {URL, URL_ITEM} from './constant';
-import ebuchiyClass from './getApi/getApi'
 import './App.css';
 
 
@@ -54,8 +53,6 @@ const App = () => {
   }, [selectItem.length])
 
   const handleClick = (id) => {
-    const get = ebuchiyClass.shit()
-    console.log(get)
     history.push(`${id}`)
     setSelectItem(id)
   }

@@ -4,12 +4,15 @@ import './Slider.scss'
 const Slider = ({arrayOfImage}) => {
   const [image, setImage] = useState('')
 
+  const getCurrentImageId = ({target}) => {
+    return arrayOfImage.findIndex(i => i === target.parentNode.lastChild.src);
+  }
+
   const returnedNextImage = (event) => {
-    const cuurentImg = event.target.parentNode.lastChild.src;
-    const currentId = arrayOfImage.findIndex(i => i === cuurentImg);
-    const right = currentId === arrayOfImage.length-1 ? 0 : currentId+1;
-    const left = currentId === 0 ? arrayOfImage.length-1 : currentId-1;
-    const whichWay = event.target.className === 'right' ? arrayOfImage[right] : arrayOfImage[left]
+    const id = getCurrentImageId(event)
+    // const right = id === arrayOfImage.length-1 ? 0 : id+1;
+    // const left = id === 0 ? arrayOfImage.length-1 : id-1;
+    const whichWay = event.target.className === 'right' ? arrayOfImage[id+1] : arrayOfImage[id-1]
     setImage(whichWay)
   }
 
