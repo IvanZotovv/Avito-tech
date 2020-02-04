@@ -1,7 +1,6 @@
 import React, {useContext} from 'react'
-import './Items.scss'
 import {Context} from '../../context'
-
+import './Items.scss'
 
 const Items = ({item}) => {
 

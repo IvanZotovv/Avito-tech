@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import Items from '../Items/Items'
-import './List.scss';
 import {Context} from '../../context'
+import './List.scss';
 
 const ListOfItems = ({ selectItem}) => {
   const list = useContext(Context)

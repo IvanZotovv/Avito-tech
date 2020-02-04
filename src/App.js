@@ -1,14 +1,13 @@
 import React,{ useState, useEffect } from 'react';
-import './App.css';
-import ListOfItems from './components/List/ListOfItems';
-import { useLocation } from "react-router-dom";
-import LinkToItem from './components/LinkTo/LinkToItem';
 import ReactDOM from 'react-dom';
+import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import ListOfItems from './components/List/ListOfItems';
+import LinkToItem from './components/LinkTo/LinkToItem';
 import {Context} from './context';
-
-const URL = "http://134.209.138.34/items"
-const URL_ITEM = "http://134.209.138.34/item"
+import {URL, URL_ITEM} from './constant';
+import ebuchiyClass from './getApi/getApi'
+import './App.css';
 
 
 const fetchData = (val) => (
@@ -32,8 +31,7 @@ const App = () => {
   
   const location = useLocation()
 
-
-  useEffect(() =>{
+  useEffect(() => {
     fetchData(URL).then((res) => {
       setPlaceForSale(res);
       changeCondition(true);
@@ -56,6 +54,8 @@ const App = () => {
   }, [selectItem.length])
 
   const handleClick = (id) => {
+    const get = ebuchiyClass.shit()
+    console.log(get)
     history.push(`${id}`)
     setSelectItem(id)
   }

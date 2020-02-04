@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
-import './LinkToItem.scss'
 import Slider from '../Slider/Slider';
 import {Context} from '../../context'
+import './LinkToItem.scss'
 
 const LinkToItem = () => {
  
@@ -11,7 +11,6 @@ const LinkToItem = () => {
     <div className='item-spread'>
       {
         object.map(i => {
-
           return <div className="item-block">
             <Slider arrayOfImage={i.images}/>
             <div className="item-block-info">
