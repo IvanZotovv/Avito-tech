@@ -1,4 +1,5 @@
 import React, {useState } from 'react'
+import {SLIDE_DIRECTION} from '../../constant'
 import './Slider.scss'
 
 const Slider = ({arrayOfImage}) => {
@@ -8,12 +9,17 @@ const Slider = ({arrayOfImage}) => {
     return arrayOfImage.findIndex(i => i === target.parentNode.lastChild.src);
   }
 
+  const swipeLeft = (id) => id === 0 ? arrayOfImage.length-1 : id-1;
+  const swipeRight = (id) => id === arrayOfImage.length-1 ? 0 : id+1;
+
+  const getSliderDirection = ({target}, id) => {
+    return target.className === SLIDE_DIRECTION.RIGHT ? swipeLeft(id) : swipeRight(id)
+  }
+
   const returnedNextImage = (event) => {
     const id = getCurrentImageId(event)
-    const right = id === arrayOfImage.length-1 ? 0 : id+1;
-    const left = id === 0 ? arrayOfImage.length-1 : id-1;
-    const whichWay = event.target.className === 'right' ? arrayOfImage[right] : arrayOfImage[left]
-    setImage(whichWay)
+    const nextImageId = getSliderDirection(event, id);
+    setImage(arrayOfImage[nextImageId])
   }
 
   const len = arrayOfImage.length;
