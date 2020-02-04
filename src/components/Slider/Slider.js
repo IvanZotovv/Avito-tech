@@ -1,12 +1,22 @@
-import React, {useState } from 'react'
+import React, {useState, useEffect} from 'react'
 import {SLIDE_DIRECTION} from '../../constant'
 import './Slider.scss'
 
 const Slider = ({arrayOfImage}) => {
   const [image, setImage] = useState('')
 
-  const getCurrentImageId = ({target}) => {
-    return arrayOfImage.findIndex(i => i === target.parentNode.lastChild.src);
+  const getDirection = (elem) => document.getElementsByClassName(elem)
+  const getId = (getSrc) => arrayOfImage.findIndex(i => i === getSrc.parentNode.lastChild.src)
+
+  const getCurrentImageId = (val) => {
+    if(val === 39){
+      const res = getDirection(SLIDE_DIRECTION.RIGHT)
+      return getId(res[0])
+    } else if (val === 37) {
+      const res = getDirection(SLIDE_DIRECTION.LEFT)
+      return getId(res[0])
+    }
+    return getId(val.target)
   }
 
   const swipeLeft = (id) => id === 0 ? arrayOfImage.length-1 : id-1;
@@ -17,10 +27,20 @@ const Slider = ({arrayOfImage}) => {
   }
 
   const returnedNextImage = (event) => {
-    const id = getCurrentImageId(event)
+    const val = event.keyCode ? event.keyCode : event
+    const id = getCurrentImageId(val)
     const nextImageId = getSliderDirection(event, id);
     setImage(arrayOfImage[nextImageId])
   }
+
+
+  useEffect(() => {
+    window.addEventListener('keydown', returnedNextImage);
+
+    return () => {
+      window.removeEventListener('keydown', returnedNextImage);
+    };
+  }, [returnedNextImage]);
 
   const len = arrayOfImage.length;
 
