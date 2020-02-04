@@ -10,9 +10,9 @@ const Slider = ({arrayOfImage}) => {
 
   const returnedNextImage = (event) => {
     const id = getCurrentImageId(event)
-    // const right = id === arrayOfImage.length-1 ? 0 : id+1;
-    // const left = id === 0 ? arrayOfImage.length-1 : id-1;
-    const whichWay = event.target.className === 'right' ? arrayOfImage[id+1] : arrayOfImage[id-1]
+    const right = id === arrayOfImage.length-1 ? 0 : id+1;
+    const left = id === 0 ? arrayOfImage.length-1 : id-1;
+    const whichWay = event.target.className === 'right' ? arrayOfImage[right] : arrayOfImage[left]
     setImage(whichWay)
   }
 
