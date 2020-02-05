@@ -5,30 +5,41 @@ import './Slider.scss'
 const Slider = ({arrayOfImage}) => {
   const [image, setImage] = useState('')
 
-  const getDirection = (elem) => document.getElementsByClassName(elem)
-  const getId = (getSrc) => arrayOfImage.findIndex(i => i === getSrc.parentNode.lastChild.src)
-
-  const getCurrentImageId = (val) => {
-    if(val === 39){
-      const res = getDirection(SLIDE_DIRECTION.RIGHT)
-      return getId(res[0])
-    } else if (val === 37) {
-      const res = getDirection(SLIDE_DIRECTION.LEFT)
-      return getId(res[0])
-    }
-    return getId(val.target)
-  }
+  const getId = (image) => arrayOfImage.findIndex(i => i === image)
+  const getCurrentImageId = () => getId(image);
+  
 
   const swipeLeft = (id) => id === 0 ? arrayOfImage.length-1 : id-1;
   const swipeRight = (id) => id === arrayOfImage.length-1 ? 0 : id+1;
 
-  const getSliderDirection = ({target}, id) => {
-    return target.className === SLIDE_DIRECTION.RIGHT ? swipeLeft(id) : swipeRight(id)
+  const onKeyPressEvent = (val, id) => {
+    console.log(val.keyCode)
+    if(val.keyCode === 37){
+      return swipeLeft(id)
+    } else if(val.keyCode === 39) {
+      return swipeRight(id)
+    }
+    return id
   }
 
+  const onClickEvent = (val, id) => {
+    // console.log(val.target.className === SLIDE_DIRECTION.RIGHT ? swipeLeft(id) : swipeRight(id))
+    // return val.target.className === SLIDE_DIRECTION.RIGHT ? swipeLeft(id) : swipeRight(id)
+    if(val.target.className === SLIDE_DIRECTION.RIGHT){
+      return swipeRight(id)
+    } else if(val.target.className === SLIDE_DIRECTION.LEFT) {
+      return swipeLeft(id)
+    }
+  }
+
+
+  const getSliderDirection = (event, id) => {
+    return  event.keyCode ? onKeyPressEvent(event, id) : onClickEvent(event, id)
+  }
+
+
   const returnedNextImage = (event) => {
-    const val = event.keyCode ? event.keyCode : event
-    const id = getCurrentImageId(val)
+    const id = getCurrentImageId()
     const nextImageId = getSliderDirection(event, id);
     setImage(arrayOfImage[nextImageId])
   }
