@@ -13,29 +13,25 @@ const Slider = ({arrayOfImage}) => {
   const swipeRight = (id) => id === arrayOfImage.length-1 ? 0 : id+1;
 
   const onKeyPressEvent = (val, id) => {
-    console.log(val.keyCode)
-    if(val.keyCode === 37){
-      return swipeLeft(id)
-    } else if(val.keyCode === 39) {
-      return swipeRight(id)
-    }
-    return id
+    console.log(Object.values(SLIDE_DIRECTION).includes(val.code.toLowerCase()))
+    return val.code.toLowerCase().includes(SLIDE_DIRECTION) ? swipeLeft(id) : swipeRight(id)
   }
+  
 
   const onClickEvent = (val, id) => {
-    // console.log(val.target.className === SLIDE_DIRECTION.RIGHT ? swipeLeft(id) : swipeRight(id))
-    // return val.target.className === SLIDE_DIRECTION.RIGHT ? swipeLeft(id) : swipeRight(id)
-    if(val.target.className === SLIDE_DIRECTION.RIGHT){
-      return swipeRight(id)
-    } else if(val.target.className === SLIDE_DIRECTION.LEFT) {
-      return swipeLeft(id)
-    }
+    return val.target.className.includes(SLIDE_DIRECTION) ? swipeLeft(id) : swipeRight(id)
   }
-
+    
 
   const getSliderDirection = (event, id) => {
-    return  event.keyCode ? onKeyPressEvent(event, id) : onClickEvent(event, id)
+
+    // const checkKeyCode = (event) => Object.values(SLIDE_DIRECTION).includes(event.code.toLowerCase())
+    // const rr = checkKeyCode(event) ? onKeyPressEvent(event, id) : id
+
+    return event.code ? onKeyPressEvent(event, id) : onClickEvent(event, id)
   }
+    
+  
 
 
   const returnedNextImage = (event) => {
@@ -58,10 +54,10 @@ const Slider = ({arrayOfImage}) => {
   return (
     <div className="slider">
       <div className="slider-block">
-        <a className={len > 1 ? 'left' : 'left-disable'} 
+        <a className={len > 1 ? 'arrowleft' : 'left-disable'} 
           onClick={returnedNextImage}
         >&lt;</a>
-        <a className={len > 1 ? 'right' : 'right-disable'}  
+        <a className={len > 1 ? 'arrowright' : 'right-disable'}  
           onClick={returnedNextImage}
         >&gt;</a>          
         <img className="slider-block-image" src={image === '' ? arrayOfImage[0] : image} alt="item"/>
