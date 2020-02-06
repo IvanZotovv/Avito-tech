@@ -1,0 +1,40 @@
+.item-spread{
+  width: 65%;
+  height: 75vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+}
+
+.item-block {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.item-block-info {
+  width: 30%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.item-block-title {
+  margin: 20px 0;
+  text-align: center;
+}
+.item-block-price {
+  text-align: center;
+}
+
+.button{
+  width: 80%;
+  margin: 25px auto 0;
+}
+.item-block-desc{
+  text-align: justify;
+  height: 71%;
+}

@@ -1,35 +1,19 @@
-import React, { Component } from 'react'
-import {URL, URL_ITEM} from '../constant'
+import React from 'react';
 
-class getApi extends Component {
-  constructor(URL, URL_ITEM){
-    this.URL = URL,
+class GetApi {
+  constructor(URL, URL_ITEM) {
+    this.URL = URL;
     this.URL_ITEM = URL_ITEM
   }
 
-  fetchAllItems(URL){
+  fetchData(URL) {
     return  new Promise(async(resolve, reject) => {
-      try {
-        const res = await fetch(URL);
-        resolve(res.json());
-      } catch(err) {
-        reject(err);
-      }
+      const res = await fetch(URL);
+      resolve(res.json());
     })    
-  }
-
-  fetchItem(URL_ITEM){
-    return  new Promise(async(resolve, reject) => {
-      try {
-        const res = await fetch(URL_ITEM);
-        resolve(res.json());
-      } catch(err) {
-        reject(err);
-      }
-    })
   }
 }
 
-const getItems = new getApi()
+const getItems = new GetApi()
 
 export default getItems;
