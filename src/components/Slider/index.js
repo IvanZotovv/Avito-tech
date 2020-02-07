@@ -8,8 +8,8 @@ const Slider = ({arrayOfImage}) => {
   const returnedNextImage = (event) => {
     const id = getCurrentImageId(arrayOfImage, image);
     const nextImageId = getSliderDirection(event, id, arrayOfImage);
-    const val = !image ?  nextImageId+1 : nextImageId;
-    setImage(arrayOfImage[val])
+    const defineNextImageId = !image ?  nextImageId+1 : nextImageId;
+    setImage(arrayOfImage[defineNextImageId]);
   }
 
 
@@ -21,15 +21,15 @@ const Slider = ({arrayOfImage}) => {
     };
   }, [returnedNextImage]);
 
-  const len = arrayOfImage.length;
+  const arrayLength = arrayOfImage.length;
 
   return (
     <div className="slider">
       <div className="slider-block">
-        <a className={changeVal(len, 'arrowleft')} 
+        <a className={changeVal(arrayLength, 'arrowleft')} 
           onClick={returnedNextImage}
         >&lt;</a>
-        <a className={changeVal(len, 'arrowright')}  
+        <a className={changeVal(arrayLength, 'arrowright')}  
           onClick={returnedNextImage}
         >&gt;</a>          
         <img className="slider-block-image" src={image === '' ? arrayOfImage[0] : image} alt="item"/>

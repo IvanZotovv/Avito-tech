@@ -4,11 +4,10 @@ import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import ListOfItems from './components/List';
 import LinkToItem from './components/LinkTo';
+import getItems from './GetApi/GetApi';
 import {Context} from './context';
 import {URL, URL_ITEM} from './constant';
 import './App.css';
-import getItems from './GetApi/GetApi'
-
 
 
 
@@ -22,8 +21,7 @@ const App = () => {
   const location = useLocation()
 
   useEffect(() => {
-    const getAllItems = getItems.fetchData(URL);
-    getAllItems.then((res) => {
+    getItems.getAllObjects(URL).then((res) => {
       setPlaceForSale(res);
       changeCondition(true);
     })
@@ -35,8 +33,7 @@ const App = () => {
 
   useEffect(() => {
     if(selectItem){
-      const getItem = getItems.fetchData(`${URL_ITEM}${location.pathname}`);
-      getItem.then((res) => {
+      getItems.getCurrentObject(`${URL_ITEM}${location.pathname}`).then((res) => {
         setObject(res);
       })
       .catch((err) => {

@@ -20,4 +20,4 @@ export const getSliderDirection = (event, id, arrayOfImage) => {
 const getId = (image, arrayOfImage) => arrayOfImage.findIndex(i => i === image);
 export const getCurrentImageId = (arrayOfImage, image) => getId(image, arrayOfImage);
 
-export const changeVal = (len, val) => len > 1 ? val : `${val}-disable`
+export const changeVal = (arrayLength, className) => arrayLength > 1 ? className : `${className}-disable`;

@@ -25,14 +25,7 @@ const ListOfItems = ({selectItem}) => {
           <Card title={item.title} selectItem={selectItem} item={item} key={item.id}/>
       </List.Item>
     )}
-  />
-
-
-    // <ul className='list'>
-    //   {placeForSale.map(i => 
-    //     <Items selectItem={selectItem} item={i} key={i.id} />
-    //   )}
-    // </ul>       
+  />     
   )
 }
 

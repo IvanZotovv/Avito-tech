@@ -6,12 +6,17 @@ class GetApi {
     this.URL_ITEM = URL_ITEM
   }
 
-  fetchData(URL) {
-    return  new Promise(async(resolve, reject) => {
-      const res = await fetch(URL);
-      resolve(res.json());
-    })    
-  }
+  sendRequest(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url).then((res) => res.json()).then((res) => resolve(res))
+        .catch((err) => reject(err));
+    })
+  };
+
+  getAllObjects = (url = this.url) => this.sendRequest(url);
+
+  getCurrentObject = (id) => this.sendRequest(id);
+  
 }
 
 const getItems = new GetApi()
