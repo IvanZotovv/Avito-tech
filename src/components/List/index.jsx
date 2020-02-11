@@ -1,38 +1,36 @@
-import React, {useContext} from 'react'
-<<<<<<< HEAD
-import Card from './Items';
-import { List, Item } from 'antd';
-import {Context} from '../../context';
-=======
-import Card from './Items'
-import { List, Item } from 'antd';
-import {Context} from '../../context'
->>>>>>> refactoring_after_review
-import './style.scss';
+import React, { useContext } from "react";
+import Card from "./Items";
+import { List } from "antd";
+import { Context } from "../../context";
+import "./style.scss";
 
-const ListOfItems = ({selectItem}) => {
+const ListOfItems = ({ selectItem }) => {
   const list = useContext(Context);
-  const {placeForSale} = list;
+  const { placeForSale } = list;
   return (
     <List
-    grid={{
-      gutter: 16,
-      xs: 1,
-      sm: 2,
-      md: 2,
-      lg: 3,
-      xl: 4,
-      xxl: 4,
-    }}
-
-    dataSource={placeForSale}
-    renderItem={item => (
-      <List.Item>
-          <Card title={item.title} selectItem={selectItem} item={item} key={item.id}/>
-      </List.Item>
-    )}
-  />     
-  )
-}
+      grid={{
+        gutter: 16,
+        xs: 1,
+        sm: 2,
+        md: 2,
+        lg: 3,
+        xl: 4,
+        xxl: 4
+      }}
+      dataSource={placeForSale}
+      renderItem={item => (
+        <List.Item>
+          <Card
+            title={item.title}
+            selectItem={selectItem}
+            item={item}
+            key={item.id}
+          />
+        </List.Item>
+      )}
+    />
+  );
+};
 
 export default ListOfItems;
