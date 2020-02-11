@@ -1,8 +1,9 @@
 .slider {
   width: 70%;
-  height: 100%;
+  height: 99%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .slider-block {
@@ -19,7 +20,6 @@
   margin: 5px 0;
   padding: 0;
   display: flex;
-  // flex-wrap: wrap;
 }
 
 .slider-item {
@@ -32,7 +32,7 @@
   width: 150px;
 }
 
-.left {
+.arrowleft {
   position: absolute;
   color: red;
   z-index: 234;
@@ -45,7 +45,7 @@
   }
 }
 
-.right {
+.arrowright {
   position: absolute;
   color: red;
   z-index: 234;
@@ -58,7 +58,7 @@
   }
 }
 
-.left-disable {
+.arrowleft-disable {
   position: absolute;
   color: rgba(82, 82, 80, 0.151);
   z-index: 234;
@@ -66,7 +66,7 @@
   right: 93%;
   font-size: 35px;
 }
-.right-disable {
+.arrowright-disable {
   position: absolute;
   color: rgba(82, 82, 80, 0.151);
   z-index: 234;

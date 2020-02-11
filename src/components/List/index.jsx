@@ -1,7 +1,13 @@
 import React, {useContext} from 'react'
+<<<<<<< HEAD
 import Card from './Items';
 import { List, Item } from 'antd';
 import {Context} from '../../context';
+=======
+import Card from './Items'
+import { List, Item } from 'antd';
+import {Context} from '../../context'
+>>>>>>> refactoring_after_review
 import './style.scss';
 
 const ListOfItems = ({selectItem}) => {

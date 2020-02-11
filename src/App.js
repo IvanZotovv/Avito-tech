@@ -8,6 +8,10 @@ import getItems from './GetApi/GetApi';
 import {Context} from './context';
 import {URL, URL_ITEM} from './constant';
 import './App.css';
+<<<<<<< HEAD
+=======
+
+>>>>>>> refactoring_after_review
 
 
 const App = () => {

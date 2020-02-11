@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React, {useContext} from 'react';
 import Slider from '../Slider';
 import { Button } from 'antd';
 import {Context} from '../../context';
 import './style.scss';
+=======
+import React, {useContext} from 'react'
+import Slider from '../Slider';
+import { Button } from 'antd';
+import {Context} from '../../context'
+import './style.scss'
+>>>>>>> refactoring_after_review
 
 const LinkToItem = () => {
  
